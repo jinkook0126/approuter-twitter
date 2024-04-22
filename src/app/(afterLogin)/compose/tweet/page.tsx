@@ -1,3 +1,5 @@
+import Home from "../../home/page";
+
 export default function ComposePage() {
-  return <main>compose</main>;
+  return <Home />;
 }

@@ -10,8 +10,10 @@ import TrendSection from "./_component/TrendSection";
 
 export default async function AfterLoginLayout({
   children,
+  modal,
 }: {
   children: ReactNode;
+  modal: ReactNode;
 }) {
   return (
     <div className={style.container}>
@@ -60,6 +62,7 @@ export default async function AfterLoginLayout({
           </section>
         </div>
       </div>
+      {modal}
     </div>
   );
 }
