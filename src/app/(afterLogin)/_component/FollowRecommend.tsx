@@ -16,7 +16,7 @@ export default function FollowRecommend() {
     <div className={style.container}>
       <div className={style.userLogoSection}>
         <div className={style.userLogo}>
-          <Image src={user.image} alt={user.id} width={40} height={40} />
+          <Image src={user.image} alt={user.id} width={24} height={24} />
         </div>
       </div>
       <div className={style.userInfo}>
