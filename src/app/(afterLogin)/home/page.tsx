@@ -10,12 +10,14 @@ import TabProvider from "./_component/TabProvider";
 import style from "./home.module.css";
 import PostRecommends from "./_component/PostRecommends";
 import { getPostRecommends } from "./_lib/getpostRecommends";
+import TabDecider from "./_component/TabDecider";
 
 export default async function Home() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
+  await queryClient.prefetchInfiniteQuery({
     queryKey: ["post", "recommends"],
     queryFn: getPostRecommends,
+    initialPageParam: 0,
   });
   const dehydratedState = dehydrate(queryClient);
 
@@ -25,6 +27,7 @@ export default async function Home() {
         <TabProvider>
           <Tab />
           <PostForm />
+          <TabDecider />
           <PostRecommends />
         </TabProvider>
       </HydrationBoundary>
