@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
 import { getTrends } from "@/app/(afterLogin)/_lib/getTrends";
-import { Hashtag } from "@/model/HashTag";
+import { Hashtag } from "@/model/Hashtag";
 
 export default function TrendSection() {
   const { data: session } = useSession();
@@ -25,9 +25,9 @@ export default function TrendSection() {
       <div className={style.trendBg}>
         <div className={style.trend}>
           <h3>나를 위한 트렌드</h3>
-          {data?.map((trend) => (
-            <Trend trend={trend} key={trend.tagId} />
-          ))}
+          {data?.map((trend, i) => {
+            return <Trend trend={trend} key={`trend-${i}`} />;
+          })}
         </div>
       </div>
     );

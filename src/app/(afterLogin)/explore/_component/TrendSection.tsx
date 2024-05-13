@@ -3,7 +3,7 @@
 import Trend from "@/app/(afterLogin)/_component/Trend";
 import { useQuery } from "@tanstack/react-query";
 import { getTrends } from "@/app/(afterLogin)/_lib/getTrends";
-import { Hashtag } from "@/model/HashTag";
+import { Hashtag } from "@/model/Hashtag";
 
 export default function TrendSection() {
   const { data } = useQuery<Hashtag[]>({
