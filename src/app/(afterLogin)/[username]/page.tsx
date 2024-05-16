@@ -6,18 +6,21 @@ import {
 } from "@tanstack/react-query";
 import UserPosts from "./_component/UserPosts";
 import { getUserPosts } from "./_lib/getUserPosts";
-import { getUser } from "./_lib/getUser";
+import { getUserServer } from "./_lib/getUserServer";
 import UserInfo from "./_component/UserInfo";
+import { auth } from "@/auth";
 
 type Props = {
   params: { username: string };
 };
 export default async function Profile({ params }: Props) {
   const { username } = params;
+  const session = await auth();
+
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["users", username],
-    queryFn: getUser,
+    queryFn: getUserServer,
   });
   await queryClient.prefetchQuery({
     queryKey: ["posts", "users", username],
@@ -28,7 +31,7 @@ export default async function Profile({ params }: Props) {
   return (
     <main className={style.main}>
       <HydrationBoundary state={dehydratedState}>
-        <UserInfo username={username} />
+        <UserInfo username={username} session={session} />
         <div>
           <UserPosts username={username} />
         </div>
