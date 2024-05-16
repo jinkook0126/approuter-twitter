@@ -24,7 +24,7 @@ export default function PostArticle({ children, post }: Props) {
     router.push(`/${post.User.id}/status/${post.postId}`);
   };
   return (
-    <article className={style.post} onClickCapture={onClick}>
+    <article className={style.post} onClick={onClick}>
       {children}
     </article>
   );
