@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import style from "./message.module.css";
 import Room from "@/app/(afterLogin)/messages/_component/Room";
+
+export const metaData: Metadata = {
+  title: "쪽지 / Z",
+  description: "쪽지를 보내세요.",
+};
 
 export default function Home() {
   return (
