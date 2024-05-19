@@ -18,4 +18,6 @@ export interface Post {
     Reposts: number;
     Comments: number;
   };
+  Original?: Post;
+  Parent?: Post;
 }
