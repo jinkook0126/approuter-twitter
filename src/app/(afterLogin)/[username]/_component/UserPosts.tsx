@@ -8,8 +8,8 @@ import {
 import { getUserPosts } from "../_lib/getUserPosts";
 import Post from "@/app/(afterLogin)/_component/Post";
 import { Post as IPost } from "@/model/Post";
-import { useInView } from "react-intersection-observer";
 import { Fragment, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 type Props = {
   username: string;
@@ -29,9 +29,12 @@ export default function UserPosts({ username }: Props) {
     staleTime: 60 * 1000, // fresh -> stale, 5분이라는 기준
     gcTime: 300 * 1000,
   });
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData(["users", username]);
+  console.log("user", user);
   const { ref, inView } = useInView({
     threshold: 0,
-    delay: 1000,
+    delay: 0,
   });
 
   useEffect(() => {
@@ -39,12 +42,11 @@ export default function UserPosts({ username }: Props) {
       !isFetching && hasNextPage && fetchNextPage();
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData(["users", username]);
+
   if (user) {
     return (
       <>
-        {data?.pages.map((page, i) => (
+        {data?.pages?.map((page, i) => (
           <Fragment key={i}>
             {page.map((post) => (
               <Post key={post.postId} post={post} />

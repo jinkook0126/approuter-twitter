@@ -1,13 +1,13 @@
 import style from "./profile.module.css";
 import {
+  dehydrate,
   HydrationBoundary,
   QueryClient,
-  dehydrate,
 } from "@tanstack/react-query";
-import UserPosts from "./_component/UserPosts";
-import { getUserPosts } from "./_lib/getUserPosts";
-import { getUserServer } from "./_lib/getUserServer";
-import UserInfo from "./_component/UserInfo";
+import UserPosts from "@/app/(afterLogin)/[username]/_component/UserPosts";
+import UserInfo from "@/app/(afterLogin)/[username]/_component/UserInfo";
+import { getUserPosts } from "@/app/(afterLogin)/[username]/_lib/getUserPosts";
+import { getUserServer } from "@/app/(afterLogin)/[username]/_lib/getUserServer";
 import { auth } from "@/auth";
 import { User } from "@/model/User";
 
@@ -27,7 +27,6 @@ type Props = {
 export default async function Profile({ params }: Props) {
   const { username } = params;
   const session = await auth();
-
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["users", username],
