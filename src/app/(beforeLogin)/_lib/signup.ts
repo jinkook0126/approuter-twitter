@@ -49,4 +49,5 @@ export default async function signup(prevState: any, formData: FormData) {
   if (shouldRedirect) {
     redirect("/home"); // try/catch문 안에서 X
   }
+  return { message: null };
 }
