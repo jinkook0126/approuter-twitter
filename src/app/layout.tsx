@@ -1,12 +1,12 @@
-import "./globals.css";
+import "./globalTheme.css";
 import { Inter } from "next/font/google";
-import styles from "./page.module.css";
 import { MSWComponent } from "./_component/MSWComponent";
 import AuthSession from "./_component/AuthSession";
+import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Z. 무슨 일이 일어나고 있나요? / Z",
   description: "Z.com inspired by X.com",
 };
